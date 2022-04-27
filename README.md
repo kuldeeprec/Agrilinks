@@ -17,5 +17,5 @@ localhost:8000/api/v1/reports/post
 }
 # validating and api get data
 # url 
-localhost:8000/api/v1/reports/?reportID=6269a2cd7198eca43b9cb108
+localhost:8000/api/v1/reports/?reportID=6269add4c48fabd466f39568
 # you can verify through postman
