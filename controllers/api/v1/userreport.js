@@ -30,9 +30,11 @@ module.exports.createpost = async function (req, res) {
       cmdtyID: cmdtyID,
     });
     let Reports;
+    let reportid;
     if (report.length > 0) {
       //update the data;
       const id = report[0]._id;
+      reportid = id;
       let prevprice = report[0].price;
       let len = report[0].users.length;
       let ppkg = price / convFctr;
@@ -48,7 +50,7 @@ module.exports.createpost = async function (req, res) {
       );
     } else {
       // store the data
-      console.log("bi");
+      
       let ppkg = price / convFctr;
       Reports = await StoreReport.create({
         marketID,
@@ -59,11 +61,12 @@ module.exports.createpost = async function (req, res) {
         price: ppkg,
         priceUnit: "KG",
       });
+      reportid = Reports._id;
     }
-    console.log(Reports);
+    
     return res.status(200).json({
       status: "success",
-      reportID: Reports._id,
+      reportID: reportid,
     });
   } catch (error) {
     return res.status(400).json({
